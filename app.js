@@ -1,7 +1,10 @@
+
+
 const path = require("path");
 const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
+
 
 const app = express();
 
@@ -12,35 +15,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 app.use(cookieParser());
 
+
 app.use((request, response, next) => {
-    // console.log("request.cookies", request.cookies);
-    // Read cookies from the request using 'request.cookies'
-    // They are represented by an object whose properties are cookie-names
-    // and the values associated with those properties are the corresponding
-    // cookie values.
-  
     const username = request.cookies.username;
-  
-    // Set propterties on 'response.locals' to create variables that
-    // are global and available to all of the rendered templates
     response.locals.loggedInUserName = username || "";
-  
-    // The third argument to all middlewares is a callback function
-    // named 'next'. When called, it tells Express that this middleware is complete
-    // and moves on to the next middleware in line, or if it is the last middleware,
-    // begins looking for the route that matches the request
+    console.log(response.locals)
     next();
   });
 
 
 
 app.get("/", (req,res)=>{
-    res.send("Welcome")
+    res.redirect("clucks")
 })
 
 const sessionsRouter = require("./routes/sessionsRouter");
 app.use("/", sessionsRouter);
 
+const clucksRouter = require("./routes/clucksRouter");
+app.use("/clucks", clucksRouter);
 
 
 const PORT = 3000;
