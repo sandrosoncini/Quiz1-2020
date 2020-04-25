@@ -1,0 +1,16 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">
+    <h1>New Cluck</h1>
+    <form action="/clucks" method="POST">
+        <div class="form-group">
+            <label for="content" class="col-sm-2 col-form-label col-form-label-lg">Content</label>
+            <textarea type="text" class="form-control" name="content" placeholder="" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="image_url" class="col-sm-2 col-form-label col-form-label-lg">Image Url</label>
+            <input type="url" class="form-control form-control-lg"  name= "image_url" placeholder="e.g. https://www.example.com/some.jpg">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" value="submit">Cluck!</button>
+    </form>
+</div>
+<%- include('../partials/footer.ejs') %>

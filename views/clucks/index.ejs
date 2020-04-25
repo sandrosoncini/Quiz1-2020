@@ -1,0 +1,25 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">
+    <h1>Clucks</h1>
+<% for(let cluck of clucks) { %> 
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row featurette" >
+            <h3 class="card-title">
+                <img src="https://images.unsplash.com/photo-1547139586-e8a75f518421?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60" alt="image" class="img-circle team-logo rounded-circle mr-3 small" height="70px" width="70px">
+
+                <h6 class="card-title w-50 m-1"><%= cluck.username%> • <%= utils.timeAgo(cluck.created_at) %></h6>
+              
+            </h3>
+        </div>
+        <p class="card-text"><%= cluck.content %> </p>
+        <% if(cluck.image_url) { %>
+            <img src="<%= cluck.image_url %> " class="img-fluid" alt="Responsive image">
+        <% } %>  
+    </div>
+</div>
+<br>
+
+<% } %>
+
+<%- include('../partials/footer.ejs') %>
